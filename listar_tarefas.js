@@ -17,7 +17,7 @@ let renderTarefas = (tarefasJSON) => {
 
       let tarefaData = document.createElement("p")
       let dataFormatada = new Date (Date.parse(obj["data"]))
-      dataFormatada = `${dataFormatada.getDate()}/${dataFormatada.getMonth()}/${dataFormatada.getFullYear()}`
+      dataFormatada = `${dataFormatada.getDate()}/${dataFormatada.getMonth() + 1}/${dataFormatada.getFullYear()}`
       
       tarefaData.innerHTML = dataFormatada
 
