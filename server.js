@@ -4,6 +4,7 @@ const { readFileSync } = require("fs")
 const homePage = readFileSync("./index.html")
 const styles = readFileSync("./styles.css")
 const listarTarefas = readFileSync("./listar_tarefas.js")
+const criarPage = readFileSync("./criar_tarefa.html")
 
 const server = http.createServer((req, res) => {
   if (req.url === "/") {
@@ -24,6 +25,10 @@ const server = http.createServer((req, res) => {
       res.write(JSON.stringify(result))
       res.end()
     })
+  } else if (req.url === "/criar" && req.method === "GET") {
+    res.writeHead(200, { "content-type": "text/html" })
+    res.write(criarPage)
+    res.end()
   }
 })
 
