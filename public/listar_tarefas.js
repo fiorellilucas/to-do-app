@@ -12,17 +12,14 @@ let renderTarefas = (tarefasJSON) => {
     tarefasJSON.forEach(obj => {
       let tarefa = document.createElement("li")
 
-      let tarefaText = document.createElement("p")
-      tarefaText.innerHTML = obj["tarefa"]
-
-      let tarefaData = document.createElement("p")
       let dataFormatada = new Date (Date.parse(obj["data"]))
       dataFormatada = `${dataFormatada.getDate()}/${dataFormatada.getMonth() + 1}/${dataFormatada.getFullYear()}`
-      
-      tarefaData.innerHTML = dataFormatada
 
-      tarefa.appendChild(tarefaText)
-      tarefa.appendChild(tarefaData)
+      let tarefaLink = document.createElement("a")
+      tarefaLink.href = `/tarefas/${obj["ID"]}`
+      tarefaLink.innerHTML = `${obj["tarefa"]} - ${dataFormatada}`
+
+      tarefa.appendChild(tarefaLink)
       listaTarefas.appendChild(tarefa)
     })
   }

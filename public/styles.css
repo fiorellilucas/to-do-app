@@ -2,3 +2,7 @@ label, input {
   display: block;
   margin: 1vh 0
 }
+
+li {
+  margin: 2vh 0;
+}
