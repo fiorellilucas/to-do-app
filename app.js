@@ -1,3 +1,5 @@
+const PORT = 8000
+
 const express = require("express")
 const app = express()
 const path = require("path")
@@ -24,8 +26,7 @@ app.get("/tarefas/:id", (req, res) => {
 })
 
 app.get("/tarefas/:id/alterar", (req, res) => {
-  console.log(req.params)
-  res.send("alterar")
+  res.sendFile(path.join(__dirname, "./alterar_tarefa.html"))
 })
 
 app.get("/tarefas/:id/deletar", (req, res) => {
@@ -55,8 +56,8 @@ app.post(
   }
 )
 
-app.listen(5000, () => {
-  console.log("Server rodando na porta 5000")
+app.listen(PORT, () => {
+  console.log(`Server rodando na porta ${PORT}`)
 })
 
 const getTodasTarefas = () => {

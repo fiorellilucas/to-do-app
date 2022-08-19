@@ -22,15 +22,10 @@ let renderTarefas = (tarefasJSON) => {
       tarefa.appendChild(tarefaLink)
       listaTarefas.appendChild(tarefa)
 
-      let tarefaAlterarLink = document.createElement("a")
-      tarefaAlterarLink.href = `/tarefas/${obj["ID"]}/alterar`
-      tarefaAlterarLink.innerHTML = "Alterar"
-
       let tarefaDeletarLink = document.createElement("a")
       tarefaDeletarLink.href = `/tarefas/${obj["ID"]}/deletar`
       tarefaDeletarLink.innerHTML = "Deletar"
 
-      tarefa.appendChild(tarefaAlterarLink)
       tarefa.appendChild(tarefaDeletarLink)
     })
   }
