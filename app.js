@@ -63,13 +63,17 @@ const getTodasTarefas = () => {
 const getTarefa = (id) => {
   const conn = require("./db_connection")
   return new Promise((resolve, reject) => {
-    conn.query("SELECT * FROM tarefas WHERE ID=?", [id], (err, result, fields) => {
-      if (err) {
-        reject(err)
-      } else {
-        resolve(result)
+    conn.query(
+      "SELECT * FROM tarefas WHERE ID=?",
+      [id],
+      (err, result, fields) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(result)
+        }
       }
-    })
+    )
   })
 }
 
