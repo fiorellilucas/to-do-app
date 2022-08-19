@@ -3,7 +3,7 @@ const app = express()
 const path = require("path")
 const { body, validationResult } = require("express-validator")
 
-app.use("/", express.static("public"))
+app.use(express.static("public"))
 app.use(express.urlencoded({ extended: true }))
 
 app.get("/", (req, res) => {
@@ -20,6 +20,18 @@ app.get("/tarefas/:id", (req, res) => {
   const idTarefa = req.params.id
   getTarefa(idTarefa).then((result) => {
     res.json(result)
+  })
+})
+
+app.get("/tarefas/:id/alterar", (req, res) => {
+  console.log(req.params)
+  res.send("alterar")
+})
+
+app.get("/tarefas/:id/deletar", (req, res) => {
+  const idTarefa = req.params.id
+  deletarTarefa(idTarefa).then(() => {
+    res.redirect("/")
   })
 })
 
@@ -83,6 +95,23 @@ const salvarTarefa = (formData) => {
     conn.query(
       "INSERT INTO tarefas (tarefa, data) VALUES (?, ?)",
       [formData.tarefa, formData.data],
+      (err, result, fields) => {
+        if (err) {
+          reject(err)
+        } else {
+          resolve()
+        }
+      }
+    )
+  })
+}
+
+const deletarTarefa = (id) => {
+  const conn = require("./db_connection")
+  return new Promise((resolve, reject) => {
+    conn.query(
+      "DELETE FROM tarefas WHERE ID=?",
+      [id],
       (err, result, fields) => {
         if (err) {
           reject(err)

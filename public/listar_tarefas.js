@@ -13,9 +13,7 @@ let renderTarefas = (tarefasJSON) => {
       let tarefa = document.createElement("li")
 
       let dataFormatada = new Date(Date.parse(obj["data"]))
-      dataFormatada = `${dataFormatada.getDate()}/${
-        dataFormatada.getMonth() + 1
-      }/${dataFormatada.getFullYear()}`
+      dataFormatada = `${dataFormatada.getDate()}/${dataFormatada.getMonth() + 1}/${dataFormatada.getFullYear()}`
 
       let tarefaLink = document.createElement("a")
       tarefaLink.href = `/tarefas/${obj["ID"]}`
@@ -23,6 +21,17 @@ let renderTarefas = (tarefasJSON) => {
 
       tarefa.appendChild(tarefaLink)
       listaTarefas.appendChild(tarefa)
+
+      let tarefaAlterarLink = document.createElement("a")
+      tarefaAlterarLink.href = `/tarefas/${obj["ID"]}/alterar`
+      tarefaAlterarLink.innerHTML = "Alterar"
+
+      let tarefaDeletarLink = document.createElement("a")
+      tarefaDeletarLink.href = `/tarefas/${obj["ID"]}/deletar`
+      tarefaDeletarLink.innerHTML = "Deletar"
+
+      tarefa.appendChild(tarefaAlterarLink)
+      tarefa.appendChild(tarefaDeletarLink)
     })
   }
 }
