@@ -4,6 +4,8 @@ const app = express()
 const path = require("path")
 const { body, validationResult } = require("express-validator")
 
+const conn = require("./db_connection")
+
 app.use(express.static("public"))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride("_method"))
@@ -73,7 +75,6 @@ app.listen(5000, () => {
 })
 
 const getTodasTarefas = () => {
-  const conn = require("./db_connection")
   return new Promise((resolve, reject) => {
     conn.query("SELECT * FROM tarefas;", function (err, result, fields) {
       if (err) {
@@ -86,7 +87,6 @@ const getTodasTarefas = () => {
 }
 
 const getTarefa = (id) => {
-  const conn = require("./db_connection")
   return new Promise((resolve, reject) => {
     conn.query(
       "SELECT * FROM tarefas WHERE ID=?",
@@ -103,7 +103,6 @@ const getTarefa = (id) => {
 }
 
 const salvarTarefa = (formData) => {
-  const conn = require("./db_connection")
   return new Promise((resolve, reject) => {
     conn.query(
       "INSERT INTO tarefas (tarefa, data) VALUES (?, ?)",
@@ -120,7 +119,6 @@ const salvarTarefa = (formData) => {
 }
 
 const alterarTarefa = (id, formData) => {
-  const conn = require("./db_connection")
   return new Promise ((resolve, reject) => {
     conn.query(
       "UPDATE tarefas SET tarefa=?, data=? WHERE ID=?",
@@ -137,7 +135,6 @@ const alterarTarefa = (id, formData) => {
 }
 
 const deletarTarefa = (id) => {
-  const conn = require("./db_connection")
   return new Promise((resolve, reject) => {
     conn.query(
       "DELETE FROM tarefas WHERE ID=?",
