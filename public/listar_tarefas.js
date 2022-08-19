@@ -16,18 +16,18 @@ let renderTarefas = (tarefasJSON) => {
       dataFormatada = `${dataFormatada.getDate()}/${dataFormatada.getMonth() + 1}/${dataFormatada.getFullYear()}`
 
       let tarefaLink = document.createElement("a")
-      tarefaLink.href = `/tarefas/${obj["ID"]}`
+      tarefaLink.href = `/tarefas?id=${obj["ID"]}`
       tarefaLink.innerHTML = `${obj["tarefa"]} - ${dataFormatada}`
 
       tarefa.appendChild(tarefaLink)
       listaTarefas.appendChild(tarefa)
 
       let tarefaAlterarLink = document.createElement("a")
-      tarefaAlterarLink.href = `/tarefas/${obj["ID"]}/alterar`
+      tarefaAlterarLink.href = `/tarefas/alterar?id=${obj["ID"]}`
       tarefaAlterarLink.innerHTML = "Alterar"
 
       let tarefaDeletarLink = document.createElement("a")
-      tarefaDeletarLink.href = `/tarefas/${obj["ID"]}/deletar`
+      tarefaDeletarLink.href = `/tarefas/deletar?id=${obj["ID"]}`
       tarefaDeletarLink.innerHTML = "Deletar"
 
       tarefa.appendChild(tarefaAlterarLink)
