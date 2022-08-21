@@ -28,28 +28,6 @@ app.get("/tarefas", (req, res) => {
   }
 })
 
-app.get("/tarefas/alterar", (req, res) => {
-  res.sendFile(path.join(__dirname, "alterar_tarefa.html"))
-})
-
-app.put(
-  "/tarefas/alterar",
-  body("tarefa").isLength({ min: 1, max: 50 }),
-  body("data").isDate(),
-  (req, res) => {
-    alterarTarefa(req.query.id, req.body).then(() => {
-      res.redirect("/")
-    })
-  }
-)
-
-app.get("/tarefas/deletar", (req, res) => {
-  const idTarefa = req.query.id
-  deletarTarefa(idTarefa).then(() => {
-    res.redirect("/")
-  })
-})
-
 app.get("/criar", (req, res) => {
   res.sendFile(path.join(__dirname, "criar_tarefa.html"))
 })
@@ -69,6 +47,34 @@ app.post(
     })
   }
 )
+
+app.get("/tarefas/alterar", (req, res) => {
+  res.sendFile(path.join(__dirname, "alterar_tarefa.html"))
+})
+
+app.put(
+  "/tarefas/alterar",
+  body("tarefa").isLength({ min: 1, max: 50 }),
+  body("data").isDate(),
+  (req, res) => {
+    let formData = req.body
+    let tarefaId = req.query.id
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() })
+    }
+    alterarTarefa(tarefaId, formData).then(() => {
+      res.redirect("/")
+    })
+  }
+)
+
+app.get("/tarefas/deletar", (req, res) => {
+  const idTarefa = req.query.id
+  deletarTarefa(idTarefa).then(() => {
+    res.redirect("/")
+  })
+})
 
 app.listen(5000, () => {
   console.log("Server rodando na porta 5000")
