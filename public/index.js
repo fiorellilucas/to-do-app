@@ -15,11 +15,13 @@ let App = (props) => {
 
 let Tarefa = (props) => {
   return (
-    <li>
-      <a href={"/tarefas?id=" + props.id}>{props.tarefa} - {props.data}</a>
-      <a href={"/tarefas/alterar?id=" + props.id}>Alterar</a>
-      <a href={"/tarefas/deletar?id=" + props.id}>Deletar</a>
-    </li>
+    <ul>
+      <li>
+        <a href={"/tarefas?id=" + props.id}>{props.tarefa} - {props.data}</a>
+        <a href={"/alterar?id=" + props.id}>Alterar</a>
+        <a href={"/deletar?id=" + props.id}>Deletar</a>
+      </li>
+    </ul>
   )
 }
 

@@ -29,7 +29,7 @@ app.get("/tarefas", (req, res) => {
 })
 
 app.get("/criar", (req, res) => {
-  res.sendFile(path.join(__dirname, "criar_tarefa.html"))
+  res.sendFile(path.join(__dirname, "form_tarefa.html"))
 })
 
 app.post(
@@ -48,12 +48,12 @@ app.post(
   }
 )
 
-app.get("/tarefas/alterar", (req, res) => {
-  res.sendFile(path.join(__dirname, "alterar_tarefa.html"))
+app.get("/alterar", (req, res) => {
+  res.sendFile(path.join(__dirname, "form_tarefa.html"))
 })
 
 app.put(
-  "/tarefas/alterar",
+  "/alterar",
   body("tarefa").isLength({ min: 1, max: 50 }),
   body("data").isDate(),
   (req, res) => {
@@ -69,7 +69,7 @@ app.put(
   }
 )
 
-app.get("/tarefas/deletar", (req, res) => {
+app.get("/deletar", (req, res) => {
   const idTarefa = req.query.id
   deletarTarefa(idTarefa).then(() => {
     res.redirect("/")
