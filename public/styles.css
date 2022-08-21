@@ -6,6 +6,7 @@ input {
 
 li {
   margin: 2vh 0;
+  list-style: none;
 }
 
 a {
