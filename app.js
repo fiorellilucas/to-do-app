@@ -82,7 +82,7 @@ app.listen(5000, () => {
 
 const getTodasTarefas = () => {
   return new Promise((resolve, reject) => {
-    conn.query("SELECT * FROM tarefas;", function (err, result, fields) {
+    conn.query("SELECT * FROM tarefas WHERE data>=CURDATE() ORDER BY data ASC;", function (err, result, fields) {
       if (err) {
         reject(err)
       } else {
