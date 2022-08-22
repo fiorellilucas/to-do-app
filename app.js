@@ -82,13 +82,16 @@ app.listen(5000, () => {
 
 const getTodasTarefas = () => {
   return new Promise((resolve, reject) => {
-    conn.query("SELECT * FROM tarefas WHERE data>=CURDATE() ORDER BY data ASC;", function (err, result, fields) {
-      if (err) {
-        reject(err)
-      } else {
-        resolve(result)
+    conn.query(
+      "SELECT * FROM tarefas WHERE data>=CURDATE() ORDER BY data ASC;",
+      function (err, result, fields) {
+        if (err) {
+          reject(err)
+        } else {
+          resolve(result)
+        }
       }
-    })
+    )
   })
 }
 
@@ -125,7 +128,7 @@ const salvarTarefa = (formData) => {
 }
 
 const alterarTarefa = (id, formData) => {
-  return new Promise ((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     conn.query(
       "UPDATE tarefas SET tarefa=?, data=? WHERE ID=?",
       [formData.tarefa, formData.data, id],
