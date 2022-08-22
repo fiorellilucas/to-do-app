@@ -15,13 +15,11 @@ let App = (props) => {
 
 let Tarefa = (props) => {
   return (
-    <ul>
-      <li>
-        <a href={"/tarefas?id=" + props.id}>{props.tarefa} - {props.data}</a>
-        <a href={"/alterar?id=" + props.id}>Alterar</a>
-        <a href={"/deletar?id=" + props.id}>Deletar</a>
-      </li>
-    </ul>
+    <li>
+      <a href={"/tarefas?id=" + props.id}><h3>{props.tarefa} - {props.data}</h3></a>
+      <a href={"/alterar?id=" + props.id}>Alterar</a>
+      <a href={"/deletar?id=" + props.id}>Deletar</a>
+    </li>
   )
 }
 
@@ -35,7 +33,11 @@ let ListaTarefas = (props) => {
     tarefasArray.push(<Tarefa id={obj["ID"]} tarefa={obj["tarefa"]} data={dataFormatada} />)
   })
 
-  return (tarefasArray)
+  return (
+    <ul>
+      {tarefasArray}
+    </ul>
+  )
 }
 
 let BotaoCriar = () => {
